@@ -192,6 +192,7 @@ L33=[1 0 1 0 0 0 0 0;
      0 0 0 0 0 0 0 1
     ];
 a=mod(A*(M*A1*IM)*M,2);
+ia=mod(inv(a),2);
 b=mod(A*M*C1,2);
 c=mod(M*IA2*C2,2);
 d=mod(M*A2*IM,2);
@@ -234,3 +235,49 @@ Y12=mod(a*X12,2);
 Y13=mod(a*X13,2);
 Y14=mod(a*X14,2);
 Y15=mod(a*X15,2);
+y0=[Y0;Y4;Y8;Y12];
+y1=[Y1;Y5;Y9;Y13];
+y2=[Y2;Y6;Y10;Y14];
+y3=[Y3;Y7;Y11;Y15];
+RK0
+Q=mod(A*(M*A1*IM)*RK0+A*M*C1+B,2);
+QQ=[Q zero zero zero;
+    zero Q zero zero;
+    zero zero Q zero;
+    zero zero zero Q
+   ];
+state=mod(y1+y2+y3+[Q;Q;Q;Q],2);
+state_ni
+zero=zeros(8,8);
+RR=[e zero zero zero;
+    zero e zero zero;
+    zero zero e zero;
+    zero zero zero e
+   ];
+l00=mod(M*L00*IM,2);
+l01=mod(M*L01*IM,2);
+l02=mod(M*L02*IM,2);
+l03=mod(M*L03*IM,2);
+l10=mod(M*L10*IM,2);
+l11=mod(M*L11*IM,2);
+l12=mod(M*L12*IM,2);
+l13=mod(M*L13*IM,2);
+l20=mod(M*L20*IM,2);
+l21=mod(M*L21*IM,2);
+l22=mod(M*L22*IM,2);
+l23=mod(M*L23*IM,2);
+l30=mod(M*L30*IM,2);
+l31=mod(M*L31*IM,2);
+l32=mod(M*L32*IM,2);
+l33=mod(M*L33*IM,2);
+lbox=[l00 l01 l02 l03;
+      l10 l11 l12 l13;
+      l20 l21 l22 l23;
+      l30 l31 l32 l33
+     ];
+lboxr=[d d d d;
+       d d d d;
+       d d d d;
+       d d d d
+      ];
+y4=y0+mod(RR*lbox*lboxr*state_ni,2);                                 
