@@ -1,3 +1,6 @@
+https://patents.google.com/patent/WO2018188002A1/en?oq=WO2018188002A1
+
+
 # sm4ni
 
 Demonstration that AES-NI instructions and affine transforms can be used 
